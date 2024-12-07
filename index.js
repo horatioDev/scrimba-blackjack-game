@@ -9,6 +9,9 @@ let messageEl = document.querySelector('#message-el')
 // Dealer and Player scores
 let dealerSumEl = document.getElementById('dealer-score')
 let playerSumEl = document.getElementById('player-score')
+// Dealer and Player cards
+let dealerHand = document.getElementById('dealer-cards')
+let playerHand = document.getElementById('player-cards')
 
 let hasBlackJack = false
 let isAlive = true
@@ -34,6 +37,8 @@ function displayHands() {
   // Dealer and Player scores
   dealerSumEl.textContent = `Score: ${calculateSum(dealerCards)}`
   playerSumEl.textContent = `Score: ${calculateSum(playerCards)}`
+  showCard(dealerHand, dealerCards)
+  console.log('Dealer hand:', dealerHand, dealerCards, 'Player hand:', playerHand, playerCards)
 }
 
 // Display Message
@@ -86,6 +91,11 @@ function dealerTurn() {
   displayHands()
 }
 
+// Display Cards in cobtainer
+function showCard() {
+  dealerHand.innerHTML = dealerCards.map(card => `<div class='card'>${card}</div>`).join('')
+  playerHand.innerHTML = playerCards.map(card => `<div class='card'>${card}</div>`).join('')
+}
 // Determine winner
 function gameWinner() {
   let playerSum = calculateSum(playerCards)
